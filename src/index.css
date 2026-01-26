@@ -2,95 +2,108 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Political Campaign Design System - Abdul Latif Siddiqui */
+/* Colors inspired by rural Bengal: deep green fields, earthy clay, vibrant accents */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Primary: Deep Green of Bengal fields */
+    --background: 120 5% 98%;
+    --foreground: 156 50% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 156 50% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 156 50% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Deep Green - #006A4E */
+    --primary: 162 100% 22%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Clay/Earth Tone - #D2B48C */
+    --secondary: 34 44% 69%;
+    --secondary-foreground: 156 50% 12%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted earth tones */
+    --muted: 34 20% 90%;
+    --muted-foreground: 156 30% 35%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Vibrant Emerald Accent for Duck symbol */
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive - Red for warnings */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Border and inputs */
+    --border: 156 20% 85%;
+    --input: 156 20% 85%;
+    --ring: 162 100% 22%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Sidebar */
+    --sidebar-background: 156 30% 95%;
+    --sidebar-foreground: 156 50% 12%;
+    --sidebar-primary: 162 100% 22%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 160 84% 39%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 156 20% 85%;
+    --sidebar-ring: 162 100% 22%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Custom Campaign Colors */
+    --campaign-green: 162 100% 22%;
+    --campaign-clay: 34 44% 69%;
+    --campaign-accent: 160 84% 39%;
+    --campaign-gold: 45 93% 47%;
+    --campaign-dark: 156 50% 12%;
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(162 100% 22%) 0%, hsl(160 84% 39%) 100%);
+    --gradient-earth: linear-gradient(180deg, hsl(34 44% 69% / 0.3) 0%, hsl(34 44% 69% / 0.1) 100%);
+    --gradient-overlay: linear-gradient(180deg, hsl(156 50% 12% / 0.8) 0%, hsl(156 50% 12% / 0.4) 100%);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 156 50% 6%;
+    --foreground: 120 5% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 156 40% 10%;
+    --card-foreground: 120 5% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 156 40% 10%;
+    --popover-foreground: 120 5% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 160 84% 45%;
+    --primary-foreground: 156 50% 6%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 34 30% 25%;
+    --secondary-foreground: 120 5% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 156 30% 15%;
+    --muted-foreground: 120 10% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 160 84% 50%;
+    --accent-foreground: 156 50% 6%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 120 5% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 156 30% 20%;
+    --input: 156 30% 20%;
+    --ring: 160 84% 45%;
+
+    --sidebar-background: 156 40% 8%;
+    --sidebar-foreground: 120 5% 95%;
+    --sidebar-primary: 160 84% 50%;
+    --sidebar-primary-foreground: 156 50% 6%;
+    --sidebar-accent: 160 84% 45%;
+    --sidebar-accent-foreground: 156 50% 6%;
+    --sidebar-border: 156 30% 20%;
+    --sidebar-ring: 160 84% 50%;
   }
 }
 
@@ -100,6 +113,120 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  /* Hero Button Variant */
+  .btn-hero {
+    @apply bg-accent text-accent-foreground font-bold px-8 py-4 rounded-full shadow-lg;
+    @apply hover:shadow-xl hover:scale-105 transition-all duration-300;
+    @apply border-2 border-accent-foreground/20;
+  }
+
+  /* Duck Symbol Container */
+  .duck-symbol {
+    @apply relative inline-flex items-center justify-center;
+    filter: drop-shadow(0 4px 20px hsl(var(--accent) / 0.4));
+  }
+
+  /* Section styling */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  /* Card with earth tone border */
+  .campaign-card {
+    @apply bg-card rounded-xl border-2 border-secondary/30 shadow-lg;
+    @apply hover:shadow-xl hover:border-primary/30 transition-all duration-300;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Union badge */
+  .union-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full;
+    @apply bg-secondary/20 text-foreground border border-secondary/40;
+    @apply hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300;
+  }
+
+  /* Founder badge */
+  .founder-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold;
+    @apply bg-accent text-accent-foreground;
+  }
+
+  /* Floating vote button */
+  .floating-vote-btn {
+    @apply fixed bottom-6 right-6 z-50;
+    @apply bg-accent text-accent-foreground font-bold px-6 py-4 rounded-full shadow-2xl;
+    @apply hover:scale-110 transition-all duration-300;
+    @apply flex items-center gap-3;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--accent) / 0.4), 0 10px 40px hsl(var(--accent) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--accent) / 0.6), 0 10px 60px hsl(var(--accent) / 0.4);
+    }
+  }
+
+  /* Pledge card */
+  .pledge-card {
+    @apply campaign-card p-6 flex flex-col gap-4;
+    @apply hover:-translate-y-2;
+  }
+
+  /* Gallery image */
+  .gallery-image {
+    @apply rounded-xl overflow-hidden shadow-lg;
+    @apply hover:shadow-2xl hover:scale-[1.02] transition-all duration-500;
+  }
+
+  /* Video container */
+  .video-container {
+    @apply relative overflow-hidden rounded-xl shadow-lg;
+    @apply hover:shadow-2xl transition-all duration-300;
+  }
+
+  /* News card */
+  .news-card {
+    @apply campaign-card overflow-hidden;
+  }
+
+  /* Polling center card */
+  .polling-card {
+    @apply bg-muted/50 rounded-lg p-4 border border-border;
+    @apply hover:bg-muted transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  /* Smooth scroll */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  /* Text shadow for hero */
+  .text-shadow-hero {
+    text-shadow: 0 2px 20px hsl(var(--campaign-dark) / 0.5);
+  }
+
+  /* Backdrop blur card */
+  .glass-card {
+    @apply backdrop-blur-md bg-card/80;
   }
 }
