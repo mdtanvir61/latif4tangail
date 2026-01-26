@@ -9,6 +9,7 @@ import PollingCenterSection from "@/components/PollingCenterSection";
 import NewsSection from "@/components/NewsSection";
 import Footer from "@/components/Footer";
 import FloatingVoteButton from "@/components/FloatingVoteButton";
+import BackgroundAudio from "@/components/BackgroundAudio";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       </main>
       <Footer />
       <FloatingVoteButton />
+      <BackgroundAudio />
     </div>
   );
 };
