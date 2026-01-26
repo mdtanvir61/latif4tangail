@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Award, Shield, Users, Heart } from "lucide-react";
+import liberation1971 from "@/assets/liberation-1971.jpg";
 
 const achievements = [
   { icon: Shield, label: "মুক্তিযুদ্ধের সংগঠক", year: "১৯৭১" },
@@ -93,6 +94,42 @@ const BioSection = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* 1971 Liberation War Feature Image */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-16"
+        >
+          <div className="campaign-card overflow-hidden">
+            <div className="relative">
+              <img
+                src={liberation1971}
+                alt="১৯৭১ সালে মুক্তিযুদ্ধের সময় আবদুল লতিফ সিদ্দিকী"
+                className="w-full h-auto object-cover max-h-[600px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  <span className="inline-block px-4 py-1 bg-accent text-accent-foreground text-sm font-bold rounded-full mb-3">
+                    ১৯৭১
+                  </span>
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-2">
+                    মুক্তিযুদ্ধের দুর্জয় সংগঠক
+                  </h3>
+                  <p className="text-primary-foreground/90 text-lg md:text-xl max-w-2xl">
+                    টাঙ্গাইল অঞ্চলে মুক্তিযুদ্ধ সংগঠনে অগ্রণী ভূমিকা পালনকারী বীর মুক্তিযোদ্ধা
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -107,7 +107,7 @@ const DashboardSection = () => {
                   {item.isFounder && (
                     <span className="founder-badge">
                       <Star className="w-3 h-3" />
-                      প্রতিষ্ঠাতা: আবদুল লতিফ সিদ্দিকী
+                      তাঁর নেতৃত্বে সংসদে পৌরসভা হিসেবে স্বীকৃতি
                     </span>
                   )}
                 </div>
