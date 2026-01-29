@@ -5,7 +5,7 @@ import { MapPin, Building2, Home, Star } from "lucide-react";
 
 const pourashavas = [
   { name: "এলেঙ্গা পৌরসভা", isFounder: true },
-  { name: "কালিহাতী পৌরসভা", isFounder: false },
+  { name: "কালিহাতি পৌরসভা", isFounder: false },
 ];
 
 const unions = [
@@ -39,7 +39,7 @@ const DashboardSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            এক নজরে <span className="text-primary">আমার কালিহাতী</span>
+            এক নজরে <span className="text-primary">আমার কালিহাতি</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             টাঙ্গাইল-৪ আসনের ১৫টি প্রশাসনিক এলাকা — ২টি পৌরসভা ও ১৩টি ইউনিয়ন
