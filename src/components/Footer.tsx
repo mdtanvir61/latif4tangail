@@ -34,7 +34,7 @@ const Footer = () => {
             duration: 0.8,
             delay: 0.2
           }} className="max-w-3xl mx-auto mb-8">
-              <img alt="হাঁস মার্কা হবে কালিহাতির মার্কা" className="w-full h-auto rounded-2xl shadow-2xl" src="/lovable-uploads/f97980bf-53f1-4ff4-bd18-800964c810a7.png" />
+              <img alt="হাঁস মার্কা হবে কালিহাতির মার্কা" className="w-full h-auto rounded-2xl shadow-2xl" src="" />
             </motion.div>
 
             <motion.h2 initial={{
