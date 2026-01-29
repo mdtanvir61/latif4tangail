@@ -2,68 +2,38 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { 
-  Building, 
-  Shirt, 
   GraduationCap, 
-  Waves, 
-  Car, 
-  Ambulance, 
-  Users, 
-  Dumbbell, 
-  Shield, 
-  Droplets 
+  Heart, 
+  Smile, 
+  Home, 
+  Shield 
 } from "lucide-react";
 
 const pledges = [
   {
-    icon: Building,
-    title: "প্রশাসনিক উন্নয়ন",
-    description: "কালিহাতীর প্রশাসনিক মান আরও বৃদ্ধি করা",
-  },
-  {
-    icon: Shirt,
-    title: "তাঁত শিল্প",
-    description: "বল্লা ও রামপুরের তাঁতিদের জন্য সুতার ন্যায্যমূল্য ও ঋণ",
-  },
-  {
     icon: GraduationCap,
     title: "শিক্ষা",
-    description: "আলাউদ্দিন সিদ্দিকী কলেজের আধুনিকায়ন",
+    description: "সকলের জন্য মানসম্মত শিক্ষা নিশ্চিতকরণ—জ্ঞান ও দক্ষতায় সমৃদ্ধ প্রজন্ম গড়ে তোলা",
   },
   {
-    icon: Waves,
-    title: "নদী ভাঙন",
-    description: "গোহালিয়াবাড়ি ও দুর্গাপুরে স্থায়ী বাঁধ",
-  },
-  {
-    icon: Car,
-    title: "যোগাযোগ",
-    description: "এলেঙ্গা যানজট নিরসন",
-  },
-  {
-    icon: Ambulance,
+    icon: Heart,
     title: "স্বাস্থ্য",
-    description: "প্রতিটি ইউনিয়নে ২৪ ঘণ্টা অ্যাম্বুলেন্স",
+    description: "প্রতিটি মানুষের জন্য সুলভ ও মানসম্পন্ন স্বাস্থ্যসেবা নিশ্চিতকরণ",
   },
   {
-    icon: Users,
-    title: "নারী শক্তি",
-    description: "ঘরে বসে আয়ের সুযোগ সৃষ্টি",
+    icon: Smile,
+    title: "শান্তি",
+    description: "সামাজিক সম্প্রীতি ও সৌহার্দ্যপূর্ণ পরিবেশ বজায় রাখা",
   },
   {
-    icon: Dumbbell,
-    title: "মাদকমুক্ত সমাজ",
-    description: "যুব সমাজের জন্য ক্রীড়া কমপ্লেক্স",
+    icon: Home,
+    title: "স্বস্তি",
+    description: "প্রতিটি পরিবারের জন্য অর্থনৈতিক স্থিতিশীলতা ও মানসিক প্রশান্তি",
   },
   {
     icon: Shield,
     title: "নিরাপত্তা",
-    description: "গ্রাম পুলিশ আধুনিকায়ন",
-  },
-  {
-    icon: Droplets,
-    title: "বিশুদ্ধ পানি",
-    description: "আর্সেনিকমুক্ত পানির ব্যবস্থা",
+    description: "সকল নাগরিকের জীবন ও সম্পদের সার্বিক নিরাপত্তা নিশ্চিতকরণ",
   },
 ];
 
@@ -82,7 +52,7 @@ const PledgesSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            আগামীর <span className="text-primary">১০ অঙ্গীকার</span>
+            আগামীর <span className="text-primary">৫ অঙ্গীকার</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             কালিহাতীর উন্নয়নে আমার প্রতিশ্রুতি

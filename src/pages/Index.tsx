@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import BioSection from "@/components/BioSection";
+import UprisingSection from "@/components/UprisingSection";
 import DashboardSection from "@/components/DashboardSection";
 import PledgesSection from "@/components/PledgesSection";
 import GallerySection from "@/components/GallerySection";
@@ -18,6 +19,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <BioSection />
+        <UprisingSection />
         <DashboardSection />
         <PledgesSection />
         <GallerySection />
