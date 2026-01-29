@@ -23,7 +23,7 @@ const DuckSymbol = ({
     repeat: Infinity,
     ease: "easeInOut"
   } : undefined}>
-      <img alt="হাঁস মার্কা - Duck Symbol" className="w-full h-full object-contain" src="/lovable-uploads/cf1528af-e819-43bb-97ee-95470e98f291.png" />
+      <img alt="হাঁস মার্কা - Duck Symbol" className="w-full h-full object-contain" src="/lovable-uploads/7bd261fe-521a-4f27-ae61-97e8e1a39680.png" />
     </motion.div>;
 };
 export default DuckSymbol;
