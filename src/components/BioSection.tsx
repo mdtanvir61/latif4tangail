@@ -8,7 +8,7 @@ const achievements = [
   { icon: Shield, label: "মুক্তিযুদ্ধের সংগঠক", year: "১৯৭১" },
   { icon: Award, label: "প্রাক্তন মন্ত্রী", year: "বাংলাদেশ সরকার" },
   { icon: Users, label: "এলেঙ্গা পৌরসভা প্রতিষ্ঠাতা", year: "২০১১" },
-  { icon: Heart, label: "জনসেবায় নিবেদিত", year: "৫০+ বছর" },
+  { icon: Heart, label: "জনসেবায় নিবেদিত", year: "৭০+ বছর" },
 ];
 
 const BioSection = () => {

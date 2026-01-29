@@ -64,20 +64,12 @@ const HeroSection = () => {
             </div>
 
             {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-4">
-              <span className="text-primary">কালিহাতীর রূপকার,</span>
-              <br />
-              <span className="text-accent">উন্নয়নের অহংকার</span>
-            </h1>
-
-            {/* Subtext */}
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              যার হাত ধরে কালিহাতী ১২ থেকে ১৫টি প্রশাসনিক এলাকায় উন্নীত হয়েছে, 
-              সেই পরীক্ষিত নেতাকেই আবার বেছে নিন।
+              কালিহাতীর জনগণের একজন পরীক্ষিত অভিভাবক, বিশ্বস্ত বন্ধু, পিতা ও নেতা।
             </p>
 
             {/* Election Symbol Badge */}
-            <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8">
               <div className="bg-secondary/50 px-4 py-2 rounded-full">
                 <span className="text-muted-foreground">নির্বাচনী প্রতীক:</span>
                 <span className="font-bold text-primary ml-2">হাঁস</span>
@@ -85,6 +77,9 @@ const HeroSection = () => {
               <div className="bg-secondary/50 px-4 py-2 rounded-full">
                 <span className="text-muted-foreground">আসন:</span>
                 <span className="font-bold text-primary ml-2">টাঙ্গাইল-৪</span>
+              </div>
+              <div className="bg-secondary/50 px-4 py-2 rounded-full">
+                <span className="font-bold text-primary">স্বতন্ত্র প্রার্থী</span>
               </div>
             </div>
 
