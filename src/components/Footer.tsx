@@ -85,11 +85,11 @@ const Footer = () => {
                 <DuckSymbol size="md" animate={false} />
                 <div>
                   <h3 className="text-xl font-bold">আবদুল লতিফ সিদ্দিকী</h3>
-                  <p className="text-sm opacity-70">টাঙ্গাইল-৪ (কালিহাতী)</p>
+                  <p className="text-sm opacity-70">টাঙ্গাইল-৪ (কালিহাতি)</p>
                 </div>
               </div>
               <p className="opacity-70 text-sm leading-relaxed">
-                মুক্তিযুদ্ধের সংগঠক, প্রাক্তন মন্ত্রী, কালিহাতীর উন্নয়নের রূপকার।
+                মুক্তিযুদ্ধের সংগঠক, প্রাক্তন মন্ত্রী, কালিহাতির উন্নয়নের রূপকার।
               </p>
             </div>
 
@@ -123,7 +123,7 @@ const Footer = () => {
                 </a>
                 <div className="flex items-center gap-3 opacity-70">
                   <MapPin className="w-5 h-5" />
-                  <span>কালিহাতী, টাঙ্গাইল</span>
+                  <span>কালিহাতি, টাঙ্গাইল</span>
                 </div>
               </div>
             </div>

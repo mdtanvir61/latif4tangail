@@ -5,7 +5,7 @@ import DuckSymbol from "./DuckSymbol";
 
 const navItems = [
   { label: "পরিচিতি", href: "#bio" },
-  { label: "আমার কালিহাতী", href: "#dashboard" },
+  { label: "আমার কালিহাতি", href: "#dashboard" },
   { label: "অঙ্গীকার", href: "#pledges" },
   { label: "গ্যালারি", href: "#gallery" },
   { label: "ভোট কেন্দ্র", href: "#polling" },
@@ -43,7 +43,7 @@ const Header = () => {
               <h1 className="text-lg md:text-xl font-bold text-foreground leading-tight">
                 আবদুল লতিফ সিদ্দিকী
               </h1>
-              <p className="text-xs text-muted-foreground">টাঙ্গাইল-৪ (কালিহাতী)</p>
+              <p className="text-xs text-muted-foreground">টাঙ্গাইল-৪ (কালিহাতি)</p>
             </div>
           </a>
 

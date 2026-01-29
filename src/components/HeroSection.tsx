@@ -65,7 +65,7 @@ const HeroSection = () => {
 
             {/* Headline */}
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              কালিহাতীর জনগণের একজন পরীক্ষিত অভিভাবক, বিশ্বস্ত বন্ধু, পিতা ও নেতা।
+              কালিহাতির জনগণের একজন পরীক্ষিত অভিভাবক, বিশ্বস্ত বন্ধু, পিতা ও নেতা।
             </p>
 
             {/* Election Symbol Badge */}

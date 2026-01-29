@@ -12,7 +12,7 @@ const newsItems = [
   },
   {
     id: 2,
-    title: "কালিহাতীর জনগণের প্রতি বার্তা",
+    title: "কালিহাতির জনগণের প্রতি বার্তা",
     youtubeId: "uxh0eD3vPSA",
     date: "২০২৬",
   },

@@ -55,7 +55,7 @@ const PledgesSection = () => {
             আগামীর <span className="text-primary">৫ অঙ্গীকার</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            কালিহাতীর উন্নয়নে আমার প্রতিশ্রুতি
+            কালিহাতির উন্নয়নে আমার প্রতিশ্রুতি
           </p>
           <div className="w-24 h-1 bg-accent mx-auto rounded-full mt-4" />
         </motion.div>
