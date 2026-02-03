@@ -126,23 +126,6 @@ const NewsSection = () => {
           ))}
         </div>
 
-        {/* YouTube Channel Link */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-10"
-        >
-          <a
-            href="https://www.youtube.com/@abdullatifssiddique7652"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-destructive hover:bg-destructive/90 text-destructive-foreground font-bold px-6 py-3 rounded-full transition-all hover:scale-105"
-          >
-            <Youtube className="w-5 h-5" />
-            ইউটিউব চ্যানেলে সাবস্ক্রাইব করুন
-          </a>
-        </motion.div>
       </div>
     </section>
   );

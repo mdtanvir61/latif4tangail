@@ -109,24 +109,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Social & Contact */}
-            <div>
-              <h4 className="font-bold mb-4">যোগাযোগ</h4>
-              <div className="space-y-3">
-                <a href="https://www.facebook.com/Abdul.latif.siddique" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity">
-                  <Facebook className="w-5 h-5" />
-                  <span>Facebook</span>
-                </a>
-                <a href="https://www.youtube.com/@abdullatifssiddique7652" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity">
-                  <Youtube className="w-5 h-5" />
-                  <span>YouTube</span>
-                </a>
-                <div className="flex items-center gap-3 opacity-70">
-                  <MapPin className="w-5 h-5" />
-                  <span>কালিহাতি, টাঙ্গাইল</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
