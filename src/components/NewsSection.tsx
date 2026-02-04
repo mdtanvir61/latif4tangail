@@ -6,6 +6,12 @@ import { Youtube, Calendar, Play } from "lucide-react";
 const newsItems = [
   {
     id: 1,
+    title: "নির্বাচনী প্রচারণা সংবাদ",
+    youtubeId: "AQ_CH8nBkO0",
+    date: "২০২৬",
+  },
+  {
+    id: 2,
     title: "আবদুল লতিফ সিদ্দিকীর প্রচারণা ভিডিও",
     youtubeId: "VrK3F7iezEE",
     date: "২০২৬",
