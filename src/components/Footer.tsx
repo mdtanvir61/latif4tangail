@@ -1,15 +1,43 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Facebook, Youtube, Phone, Mail, MapPin, Send } from "lucide-react";
+import { useRef, useState } from "react";
+import { Send } from "lucide-react";
 import DuckSymbol from "./DuckSymbol";
 import bottomCta from "@/assets/bottom-cta.png";
+import { toast } from "sonner";
 const Footer = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
     margin: "-50px"
   });
+  const [formData, setFormData] = useState({ name: "", mobile: "", message: "" });
+
+  const handleSubmit = () => {
+    toast.custom((t) => (
+      <motion.div
+        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -20, scale: 0.9 }}
+        transition={{ type: "spring", damping: 15, stiffness: 300 }}
+        className="flex items-center gap-4 bg-green-600 text-white px-6 py-4 rounded-xl shadow-2xl"
+      >
+        <motion.img
+          src="/lovable-uploads/8c1a051c-006e-4a69-b5d2-81da3c9fdf52.png"
+          alt="হাঁস মার্কা"
+          className="w-16 h-16 object-contain"
+          animate={{ y: [0, -5, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+        />
+        <div>
+          <p className="font-bold text-lg">ধন্যবাদ!</p>
+          <p className="text-sm opacity-90">আপনার মতামত গ্রহণ করা হয়েছে</p>
+        </div>
+      </motion.div>
+    ), { duration: 4000 });
+    
+    setFormData({ name: "", mobile: "", message: "" });
+  };
   return <footer id="vote" className="bg-foreground text-primary-foreground" ref={ref}>
       {/* Final CTA Section with Bottom Image */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-primary to-foreground">
@@ -100,10 +128,31 @@ const Footer = () => {
                 আপনার মতামত জানান
               </h4>
               <div className="space-y-3">
-                <input type="text" placeholder="আপনার নাম" className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent" />
-                <input type="tel" placeholder="মোবাইল নম্বর" className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent" />
-                <textarea placeholder="আপনার বার্তা..." rows={3} className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent resize-none" />
-                <button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold py-2 rounded-lg transition-colors">
+                <input 
+                  type="text" 
+                  placeholder="আপনার নাম" 
+                  value={formData.name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent" 
+                />
+                <input 
+                  type="tel" 
+                  placeholder="মোবাইল নম্বর" 
+                  value={formData.mobile}
+                  onChange={(e) => setFormData(prev => ({ ...prev, mobile: e.target.value }))}
+                  className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent" 
+                />
+                <textarea 
+                  placeholder="আপনার বার্তা..." 
+                  rows={3} 
+                  value={formData.message}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent resize-none" 
+                />
+                <button 
+                  onClick={handleSubmit}
+                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold py-2 rounded-lg transition-colors"
+                >
                   পাঠান
                 </button>
               </div>
