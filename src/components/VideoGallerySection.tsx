@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Play } from "lucide-react";
+import { useRef, useEffect } from "react";
+import { Play, ExternalLink } from "lucide-react";
 
 // Local video data
 const localVideos = [
@@ -9,13 +9,11 @@ const localVideos = [
     id: "video1",
     title: "রতনগঞ্জ বাজারে নির্বাচনী প্রচারণা শেষ করে ফেরার পথে বল্লা বাজারে দুই ভাই একসাথে",
     src: "/videos/ratongonj-campaign.mp4",
-    type: "local" as const,
   },
   {
     id: "video2",
     title: "শহীদ জামাল উচ্চ বিদ্যালয়ে প্রিয় ছাত্র-ছাত্রীদের সাথে প্রাণবন্ত ও আনন্দঘন মুহূর্ত কাটালেন জননেতা আবদুল লতিফ সিদ্দিকী",
     src: "/videos/school-visit.mp4",
-    type: "local" as const,
   },
 ];
 
@@ -73,17 +71,55 @@ const facebookVideos = [
   },
 ];
 
+const FacebookVideoEmbed = ({ url, title }: { url: string; title: string }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Load Facebook SDK
+    if (!(window as any).FB) {
+      const script = document.createElement("script");
+      script.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0";
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
+    } else {
+      (window as any).FB.XFBML.parse(containerRef.current);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Parse when FB SDK is loaded
+    const checkFB = setInterval(() => {
+      if ((window as any).FB && containerRef.current) {
+        (window as any).FB.XFBML.parse(containerRef.current);
+        clearInterval(checkFB);
+      }
+    }, 100);
+
+    return () => clearInterval(checkFB);
+  }, [url]);
+
+  return (
+    <div ref={containerRef} className="w-full">
+      <div
+        className="fb-video"
+        data-href={url}
+        data-width="auto"
+        data-show-text="false"
+        data-allowfullscreen="true"
+      />
+    </div>
+  );
+};
+
 const VideoGallerySection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [playingFbVideo, setPlayingFbVideo] = useState<string | null>(null);
-
-  const getFacebookEmbedUrl = (shareUrl: string) => {
-    return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(shareUrl)}&show_text=false&width=560`;
-  };
 
   return (
     <section id="videos" className="py-20 md:py-28 bg-muted/30">
+      <div id="fb-root" />
       <div className="section-container" ref={ref}>
         {/* Header */}
         <motion.div
@@ -132,7 +168,7 @@ const VideoGallerySection = () => {
           ))}
         </motion.div>
 
-        {/* Facebook Videos */}
+        {/* Facebook Videos - Embedded Posts */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -143,36 +179,34 @@ const VideoGallerySection = () => {
               key={video.id}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: (index + 2) * 0.1 }}
+              transition={{ duration: 0.5, delay: (index + 2) * 0.05 }}
               className="rounded-xl overflow-hidden shadow-lg bg-card"
             >
-              <div className="aspect-video relative">
-                {playingFbVideo === video.id ? (
-                  <iframe
-                    src={getFacebookEmbedUrl(video.url)}
-                    className="w-full h-full"
-                    style={{ border: "none", overflow: "hidden" }}
-                    scrolling="no"
-                    frameBorder="0"
-                    allowFullScreen={true}
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  />
-                ) : (
-                  <div
-                    className="w-full h-full bg-muted flex items-center justify-center cursor-pointer group"
-                    onClick={() => setPlayingFbVideo(video.id)}
-                  >
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
-                        <Play className="w-8 h-8 text-primary-foreground ml-1" />
-                      </div>
-                      <p className="text-muted-foreground text-sm">ভিডিও দেখতে ক্লিক করুন</p>
-                    </div>
+              <div className="aspect-video relative bg-muted">
+                <FacebookVideoEmbed url={video.url} title={video.title} />
+                {/* Fallback overlay for loading state */}
+                <a
+                  href={video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 bg-foreground/20 transition-opacity"
+                >
+                  <div className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium">
+                    <ExternalLink className="w-4 h-4" />
+                    ফেসবুকে দেখুন
                   </div>
-                )}
+                </a>
               </div>
               <div className="p-4">
-                <p className="text-foreground font-medium text-sm">{video.title}</p>
+                <a
+                  href={video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between group"
+                >
+                  <p className="text-foreground font-medium text-sm group-hover:text-primary transition-colors">{video.title}</p>
+                  <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                </a>
               </div>
             </motion.div>
           ))}
