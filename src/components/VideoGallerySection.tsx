@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useEffect } from "react";
-import { Play, ExternalLink } from "lucide-react";
+import { Play, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useState } from "react";
 
 // Local video data
 const localVideos = [
@@ -101,7 +103,7 @@ const FacebookVideoEmbed = ({ url, title }: { url: string; title: string }) => {
   }, [url]);
 
   return (
-    <div ref={containerRef} className="w-full">
+    <div ref={containerRef} className="w-full h-full">
       <div
         className="fb-video"
         data-href={url}
@@ -116,6 +118,31 @@ const FacebookVideoEmbed = ({ url, title }: { url: string; title: string }) => {
 const VideoGallerySection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    slidesToScroll: 1,
+    containScroll: "trimSnaps",
+  });
+
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
 
   return (
     <section id="videos" className="py-20 md:py-28 bg-muted/30">
@@ -168,48 +195,87 @@ const VideoGallerySection = () => {
           ))}
         </motion.div>
 
-        {/* Facebook Videos - Embedded Posts */}
+        {/* Facebook Videos - Carousel */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="relative"
         >
-          {facebookVideos.map((video, index) => (
-            <motion.div
-              key={video.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: (index + 2) * 0.05 }}
-              className="rounded-xl overflow-hidden shadow-lg bg-card"
-            >
-              <div className="aspect-video relative bg-muted">
-                <FacebookVideoEmbed url={video.url} title={video.title} />
-                {/* Fallback overlay for loading state */}
-                <a
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 bg-foreground/20 transition-opacity"
+          {/* Carousel Navigation */}
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-foreground">আরও ভিডিও</h3>
+            <div className="flex gap-2">
+              <button
+                onClick={scrollPrev}
+                disabled={!canScrollPrev}
+                className="p-2 rounded-full bg-card border border-border hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-5 h-5 text-foreground" />
+              </button>
+              <button
+                onClick={scrollNext}
+                disabled={!canScrollNext}
+                className="p-2 rounded-full bg-card border border-border hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-5 h-5 text-foreground" />
+              </button>
+            </div>
+          </div>
+
+          {/* Carousel Container */}
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-4">
+              {facebookVideos.map((video) => (
+                <div
+                  key={video.id}
+                  className="flex-[0_0_85%] sm:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0"
                 >
-                  <div className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium">
-                    <ExternalLink className="w-4 h-4" />
-                    ফেসবুকে দেখুন
+                  <div className="rounded-xl overflow-hidden shadow-lg bg-card h-full">
+                    <div className="aspect-video relative bg-muted">
+                      <FacebookVideoEmbed url={video.url} title={video.title} />
+                      {/* Overlay for click to Facebook */}
+                      <a
+                        href={video.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 bg-foreground/20 transition-opacity"
+                      >
+                        <div className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium">
+                          <ExternalLink className="w-4 h-4" />
+                          ফেসবুকে দেখুন
+                        </div>
+                      </a>
+                    </div>
+                    <div className="p-4">
+                      <a
+                        href={video.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between group"
+                      >
+                        <p className="text-foreground font-medium text-sm group-hover:text-primary transition-colors">{video.title}</p>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 ml-2" />
+                      </a>
+                    </div>
                   </div>
-                </a>
-              </div>
-              <div className="p-4">
-                <a
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between group"
-                >
-                  <p className="text-foreground font-medium text-sm group-hover:text-primary transition-colors">{video.title}</p>
-                  <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dots indicator */}
+          <div className="flex justify-center gap-2 mt-4">
+            {facebookVideos.slice(0, Math.ceil(facebookVideos.length / 3)).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => emblaApi?.scrollTo(idx * 3)}
+                className="w-2 h-2 rounded-full bg-muted-foreground/30 hover:bg-primary/50 transition-colors"
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
         </motion.div>
 
         {/* YouTube Channel Link */}
