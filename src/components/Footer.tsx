@@ -2,9 +2,18 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Send } from "lucide-react";
+import { z } from "zod";
 import DuckSymbol from "./DuckSymbol";
 import bottomCta from "@/assets/bottom-cta.png";
 import { toast } from "sonner";
+
+// Validation schema for contact form
+const contactSchema = z.object({
+  name: z.string().trim().min(2, "নাম কমপক্ষে ২ অক্ষর হতে হবে").max(100, "নাম ১০০ অক্ষরের বেশি হতে পারবে না"),
+  mobile: z.string().trim().regex(/^[0-9]{10,15}$/, "সঠিক মোবাইল নম্বর দিন (১০-১৫ সংখ্যা)").or(z.literal("")),
+  message: z.string().trim().min(1, "বার্তা লিখুন").max(500, "বার্তা ৫০০ অক্ষরের বেশি হতে পারবে না"),
+});
+
 const Footer = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
@@ -14,6 +23,17 @@ const Footer = () => {
   const [formData, setFormData] = useState({ name: "", mobile: "", message: "" });
 
   const handleSubmit = () => {
+    // Validate form data
+    const result = contactSchema.safeParse(formData);
+    
+    if (!result.success) {
+      // Show first validation error in Bengali
+      const firstError = result.error.errors[0]?.message || "ফর্মে ত্রুটি রয়েছে";
+      toast.error(firstError);
+      return;
+    }
+    
+    // Show success toast with floating duck animation
     toast.custom((t) => (
       <motion.div
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -132,21 +152,28 @@ const Footer = () => {
                   type="text" 
                   placeholder="আপনার নাম" 
                   value={formData.name}
-                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value.slice(0, 100) }))}
+                  maxLength={100}
                   className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent" 
                 />
                 <input 
                   type="tel" 
                   placeholder="মোবাইল নম্বর" 
                   value={formData.mobile}
-                  onChange={(e) => setFormData(prev => ({ ...prev, mobile: e.target.value }))}
+                  onChange={(e) => {
+                    // Only allow numeric input
+                    const numericValue = e.target.value.replace(/[^0-9]/g, '').slice(0, 15);
+                    setFormData(prev => ({ ...prev, mobile: numericValue }));
+                  }}
+                  maxLength={15}
                   className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent" 
                 />
                 <textarea 
                   placeholder="আপনার বার্তা..." 
                   rows={3} 
                   value={formData.message}
-                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value.slice(0, 500) }))}
+                  maxLength={500}
                   className="w-full px-4 py-2 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 placeholder:opacity-50 focus:outline-none focus:border-accent resize-none" 
                 />
                 <button 
